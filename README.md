@@ -32,7 +32,7 @@ ViT-RatSLAM 是一个将 ViT-VPR（当前默认 SALAD）接入 RatSLAM 后端的
 - `salad-main/weights/dino_salad.ckpt`
 
 下载链接：
-- `TODO: 由仓库维护者填写 SALAD 权重下载链接`
+- `https://drive.google.com/file/d/1u83Dmqmm1-uikOPr58IIhfIzDYwFxCy1/view`
 
 ### 2) DINOv2 backbone 权重
 
