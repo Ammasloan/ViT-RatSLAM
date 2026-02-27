@@ -1,10 +1,6 @@
 # ViT-RatSLAM（SALAD）使用与测试指南
-
-> 本文档面向开源发布后的最小可复现实验链路：
+> 实验链路：
 > 1) 启动 SALAD 推理容器；2) 启动 RatSLAM 容器；3) 直接回放 `irat_aus_28112011.bag` / `stlucia_2007.bag` 看建图与回环。
->
-> 不包含分析面板（`ratslam_analysis`）步骤；分析面板属于可选扩展模块，不是核心运行依赖。
-
 ## 1. 目录与前置条件
 
 - 工作区：`/home/ammasloan/catkin_ws`
@@ -164,7 +160,4 @@ rostopic echo /stlucia/LocalView/Template -n1
 - 推荐配置键：`vpr_embedding_topic`
 - `vpr_backend` 支持：`sad` / `salad` / `vit`
 
-## 8. 可选模块（非核心）
 
-- `ratslam_analysis` 分析面板未纳入本核心发布流程。
-- 你后续若要开放分析功能，可单独提供扩展文档，不影响核心复现链路。
