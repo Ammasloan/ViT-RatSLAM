@@ -1,6 +1,6 @@
 # ViT-RatSLAM
 
-ViT-RatSLAM 是一个将 ViT-VPR模型（以SALAD为代表）接入 RatSLAM 后端的工程框架。
+ViT-RatSLAM 是一个将 ViT-VPR模型（以SALAD为代表）接入 RatSLAM 后端的工程框架。框架运行在两个Docker容器中（分别是RatSLAM后端容器和ViT模型容器），两个容器用本地网络进行数据传输。
 
 ## 核心能力
 
