@@ -20,7 +20,7 @@ vt_log=0
 pc_cell_x_size = 2
 pc_dim_xy = 30
 exp_delta_pc_threshold = 1.0
-pc_vt_inject_energy = 0.15
+pc_vt_inject_energy = 0.6
 vt_active_decay = 1.0
 
 exp_loops=20
@@ -50,3 +50,4 @@ exp_map_size=500
 posecells_size=250
 media_path=@MEDIA_PATH@
 image_file=irat_sm.tga
+
