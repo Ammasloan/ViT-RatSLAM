@@ -1,3 +1,4 @@
+#This yaml file is bulit for your own bag dataset.Pls adjust the paramater by your own.
 endpoint: "http://salad-svc:8080/embed"
 image_topic: "/dji/camera/image"
 use_compressed: true
