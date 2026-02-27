@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>salad_vpr</name>
+  <version>0.0.1</version>
+  <description>SALAD-based visual place recognition client for ViT-RatSLAM.</description>
+
+  <maintainer email="dev@example.com">Codex</maintainer>
+  <license>GPL-3.0-or-later</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>dynamic_reconfigure</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>image_transport</depend>
+  <depend>cv_bridge</depend>
+  <depend>dynamic_reconfigure</depend>
+
+  <export />
+</package>

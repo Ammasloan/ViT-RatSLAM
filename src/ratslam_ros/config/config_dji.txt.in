@@ -1,0 +1,62 @@
+[general]
+topic_root=/dji
+
+[ratslam]
+vpr_backend=salad
+vpr_embedding_topic=/salad_vpr/embedding
+
+# Tuned for 640x480 output by default.
+image_crop_x_min=60
+image_crop_x_max=900
+image_crop_y_min=120
+image_crop_y_max=420
+
+vt_match_threshold = 0.054
+template_x_size=60
+template_y_size=10
+vt_shift_match = 5
+vt_step_match = 1
+vt_normalisation = 0.4
+pc_vt_restore=0.04
+vt_log=0
+
+pc_cell_x_size = 2
+pc_dim_xy = 30
+exp_delta_pc_threshold = 1.0
+pc_vt_inject_energy = 1.0
+vt_active_decay = 1.0
+exp_loops=20
+
+# Explicit defaults (avoid SETTINGS warnings)
+vt_min_patch_normalisation_std=0
+vt_patch_normalise=0
+vt_panoramic=0
+vpr_use_relative_rad=0
+vpr_odom_history_size=2000
+vpr_odom_max_dt=0.5
+vpr_odom_topic=/dji/odom
+
+[visual_odometry]
+vtrans_image_x_min=293
+vtrans_image_x_max=713
+vtrans_image_y_min=304
+vtrans_image_y_max=484
+
+vrot_image_x_min=293
+vrot_image_x_max=713
+vrot_image_y_min=84
+vrot_image_y_max=270
+
+camera_fov_deg=73.7
+camera_hz = 15
+vtrans_scaling = 1000
+vtrans_max=20
+
+[draw]
+enable=1
+vt_window_width=640
+vt_window_height=900
+exp_map_size=500
+posecells_size=250
+media_path=@MEDIA_PATH@
+image_file=irat_sm.tga

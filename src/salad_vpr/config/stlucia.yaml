@@ -1,0 +1,15 @@
+endpoint: "http://salad-svc:8080/embed"
+image_topic: "/stlucia/camera/image"
+use_compressed: true
+keyframe_interval: 3
+min_keyframe_dt: 1.0
+request_timeout: 8.0
+match_threshold: 1.1
+match_margin: 1.1
+min_match_index_diff: 10
+seq_consistency: 1
+topk: 50
+max_templates: 10000
+jpeg_quality: 85
+embedding_topic: "/salad_vpr/embedding"
+match_topic: "/salad_vpr/match"

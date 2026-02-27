@@ -1,0 +1,27 @@
+<launch>
+  <arg name="video_path" default="" />
+  <arg name="bag_out" default="dji_video.bag" />
+  <arg name="topic_root" default="/dji" />
+  <arg name="fps" default="10.0" />
+  <arg name="resize_width" default="640" />
+  <arg name="resize_height" default="480" />
+  <arg name="jpeg_quality" default="85" />
+
+  <!-- Use simulated time during conversion so rosbag record timestamps are stable (driven by /clock). -->
+  <param name="/use_sim_time" value="true" />
+
+  <node pkg="ratslam_ros" type="mp4_publisher.py" name="mp4_publisher" output="screen" required="true">
+    <param name="video_path" value="$(arg video_path)" />
+    <param name="topic_root" value="$(arg topic_root)" />
+    <param name="fps" value="$(arg fps)" />
+    <param name="resize_width" value="$(arg resize_width)" />
+    <param name="resize_height" value="$(arg resize_height)" />
+    <param name="jpeg_quality" value="$(arg jpeg_quality)" />
+    <param name="realtime" value="true" />
+    <param name="publish_clock" value="true" />
+    <param name="stamp_start_sec" value="0.1" />
+  </node>
+
+  <node pkg="rosbag" type="record" name="record_video" output="screen"
+        args="-O $(arg bag_out) $(arg topic_root)/camera/image/compressed" />
+</launch>

@@ -1,0 +1,40 @@
+ARG BASE_IMAGE=pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
+FROM ${BASE_IMAGE}
+
+SHELL ["/bin/bash", "-lc"]
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 基础依赖（增加 APT 重试，缓解临时 502/网络抖动）
+RUN apt-get update \
+ && apt-get install -o Acquire::Retries=5 -y --no-install-recommends \
+    git git-lfs ca-certificates curl wget \
+    ffmpeg libgl1 libglib2.0-0 libsm6 libxext6 libxrender1 \
+ && rm -rf /var/lib/apt/lists/* \
+ && git lfs install
+
+# Python 工具链
+RUN python -m pip install --no-cache-dir -U pip setuptools wheel
+
+# 推理 + 服务依赖（不重新安装 torch，本镜像已包含 2.1.0/cu121）
+COPY service/requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
+
+# 缓存与路径
+ENV HF_HOME=/workspace/.cache/hf \
+    TORCH_HOME=/workspace/.cache/torch \
+    TORCH_HUB=/workspace/.cache/torch/hub \
+    PYTHONUNBUFFERED=1 \
+    PYTHONPATH=/workspace/salad-svc:/workspace/salad-main \
+    SALAD_MAIN_PATH=/workspace/salad-main
+
+WORKDIR /workspace
+
+# 烟雾测试：确认 torch 版本 & CUDA 可见
+RUN python - <<'PY'
+import torch
+print("Torch version:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("CUDA device count:", torch.cuda.device_count())
+PY
+
+CMD ["bash"]

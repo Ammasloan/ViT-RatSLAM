@@ -1,0 +1,5 @@
+float32[] query
+int32 k
+---
+int32[] ids
+float32[] scores

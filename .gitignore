@@ -1,0 +1,48 @@
+# Catkin/ROS build artifacts
+build/
+devel/
+install/
+logs/
+.catkin_tools/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# IDE/editor
+.vscode/
+.idea/
+
+# Large data and binaries
+*.bag
+*.log
+*.bin
+*.ckpt
+*.pth
+*.pt
+*.zip
+*:[Zz]one.Identifier
+
+# Model/cache directories
+VGGT/cache/
+Newvggt/cache/
+salad-svc/cache/
+.cache/
+VGGT/vggt-main/examples/
+VGGT/test_samples/*.jpg
+VGGT/test_samples/*.jpeg
+VGGT/test_samples/*.png
+salad-main/weights/
+salad-main/datasets/
+
+# Virtual envs and local env files
+.env
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+image.png

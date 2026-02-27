@@ -1,0 +1,66 @@
+FROM osrf/ros:melodic-desktop-full
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    TERM=xterm-256color
+
+ARG UBUNTU_MIRROR=http://archive.ubuntu.com/ubuntu
+ARG ROS_MIRROR=http://packages.ros.org/ros/ubuntu
+
+# Base system deps + graphics + OpenCV + Irrlicht + common ROS tools
+RUN set -eux; \
+    rm -f /etc/apt/sources.list.d/ros1-snapshots.list; \
+    sed -ri "s|http://archive.ubuntu.com/ubuntu|${UBUNTU_MIRROR}|g" /etc/apt/sources.list; \
+    sed -ri "s|http://security.ubuntu.com/ubuntu|${UBUNTU_MIRROR}|g" /etc/apt/sources.list; \
+    apt-get update -o Acquire::Retries=5; \
+    apt-get install -y --no-install-recommends curl gnupg2 dirmngr ca-certificates; \
+    apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key F42ED6FBAB17C654 \
+      || curl -fsSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -; \
+    echo "deb ${ROS_MIRROR} bionic main" > /etc/apt/sources.list.d/ros1-latest.list; \
+    apt-get update -o Acquire::Retries=5; \
+    apt-get install -y --no-install-recommends \
+      build-essential cmake pkg-config git \
+      libopencv-dev \
+      libirrlicht-dev \
+      libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev mesa-utils \
+      libglew-dev \
+      ros-melodic-image-transport ros-melodic-compressed-image-transport \
+      ros-melodic-tf ros-melodic-cv-bridge ros-melodic-vision-opencv \
+      ros-melodic-rqt-plot ros-melodic-image-view \
+      python3-pip python3-opencv python3-numpy python3-requests python3-yaml \
+    ; \
+    pip3 install --no-cache-dir rospkg catkin_pkg; \
+    rm -rf /var/lib/apt/lists/*
+
+# Prepare catkin workspace
+WORKDIR /opt/catkin_ws
+RUN mkdir -p /opt/catkin_ws/src \
+ && /bin/bash -lc 'source /opt/ros/melodic/setup.bash && cd /opt/catkin_ws/src && catkin_init_workspace'
+
+# Copy required catkin packages into the image
+COPY src/salad_vpr /opt/catkin_ws/src/salad_vpr
+COPY src/ratslam_ros /opt/catkin_ws/src/ratslam_ros
+
+# Ensure a valid top-level CMakeLists for catkin
+RUN printf '%s\n' \
+    'cmake_minimum_required(VERSION 2.8.3)' \
+    'project(catkin_ws)' \
+    'find_package(catkin REQUIRED)' \
+    'catkin_workspace()' \
+    > /opt/catkin_ws/src/CMakeLists.txt
+
+# Build
+RUN /bin/bash -lc \
+    'source /opt/ros/melodic/setup.bash && \
+     cd /opt/catkin_ws && \
+     catkin_make -DCMAKE_BUILD_TYPE=Release'
+
+# Runtime env: source ROS + workspace
+COPY docker/entrypoint.sh /ros_entrypoint.sh
+RUN chmod +x /ros_entrypoint.sh
+
+ENV ROS_WS=/opt/catkin_ws \
+    ROS_DISTRO=melodic
+
+WORKDIR /opt/catkin_ws
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]

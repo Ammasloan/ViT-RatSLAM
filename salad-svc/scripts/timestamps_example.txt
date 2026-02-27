@@ -1,0 +1,15 @@
+# Sample timestamps file for extract_places.py
+# Each line is a timestamp in seconds, representing a distinct location
+# You need to fill in 60 timestamps by watching your bag file
+# Format: timestamp_seconds  # optional comment
+
+# Example:
+# 10.5   # entrance
+# 25.3   # corridor turn
+# 42.1   # open area
+# ...
+
+# Delete the lines below and add your own timestamps
+# Make sure to choose 60 different locations that are visually distinct
+
+0.0    # placeholder - replace with real timestamps
