@@ -1,19 +1,19 @@
 # ViT-RatSLAM
 
-ViT-RatSLAM 是一个将 ViT-VPR（当前默认 SALAD）接入 RatSLAM 后端的科研工程。
+ViT-RatSLAM 是一个将 ViT-VPR模型（以SALAD为代表）接入 RatSLAM 后端的工程框架。
 
 ## 核心能力
 
-- SALAD 前端提取全局描述子（embedding）
+- SALAD模型前端提取全局描述子（embedding）
 - RatSLAM 后端执行拓扑建图与回环校正
-- 支持 `iRat` / `St Lucia` bag 回放复现
+- 支持自建数据集（需转换为bag格式），支持RatSLAM官方数据集 `iRat` / `St Lucia` 的bag 回放复现
 
-## 仓库结构（发布版）
+## 结构
 
 - `src/ratslam_ros`：RatSLAM 后端
 - `src/salad_vpr`：ROS VPR 前端节点（SALAD）
 - `salad-svc`：SALAD FastAPI 推理服务
-- `salad-main`：SALAD 模型代码（不含大权重文件）
+- `salad-main`：SALAD 模型代码（不含权重，需自行下载）
 - `docker`：RatSLAM 容器构建与运行脚本
 
 ## 快速开始
@@ -48,7 +48,7 @@ ViT-RatSLAM 是一个将 ViT-VPR（当前默认 SALAD）接入 RatSLAM 后端的
 
 ### 3) Bag 数据集
 
-请将 bag 放在仓库根目录（或挂载到容器 `/data`）。
+请将 bag 放在仓库根目录（或挂载到容器 `/data`，最佳参数已配置到数据集对应的yaml文件当中）。
 
 - `irat_aus_28112011.bag`：`https://mega.nz/file/FAlXyZbB#6rMpQ6EE4LQIKmZvy5zN7Stdu4pIzZm2h3TnHkG2wms`
 - `stlucia_2007.bag`：`https://mega.nz/file/od8xVbKJ#E81hKj-M1-CybBkX1dLe3htAJw-gP9MAQIEeZkPwuUY`
