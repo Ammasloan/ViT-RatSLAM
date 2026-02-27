@@ -50,8 +50,8 @@ ViT-RatSLAM 是一个将 ViT-VPR（当前默认 SALAD）接入 RatSLAM 后端的
 
 请将 bag 放在仓库根目录（或挂载到容器 `/data`）。
 
-- `irat_aus_28112011.bag`：`TODO: 由仓库维护者填写下载链接`
-- `stlucia_2007.bag`：`TODO: 由仓库维护者填写下载链接`
+- `irat_aus_28112011.bag`：`https://mega.nz/file/FAlXyZbB#6rMpQ6EE4LQIKmZvy5zN7Stdu4pIzZm2h3TnHkG2wms`
+- `stlucia_2007.bag`：`https://mega.nz/file/od8xVbKJ#E81hKj-M1-CybBkX1dLe3htAJw-gP9MAQIEeZkPwuUY`
 
 ## 不纳入仓库的大文件
 
