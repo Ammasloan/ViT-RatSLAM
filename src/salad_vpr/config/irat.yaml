@@ -4,8 +4,8 @@ use_compressed: true
 keyframe_interval: 3
 min_keyframe_dt: 1
 request_timeout: 8.0
-match_threshold: 1.1
-match_margin: 1.0
+match_threshold: 0.77
+match_margin: 0.02
 min_match_index_diff: 10
 seq_consistency: 1
 topk: 50
