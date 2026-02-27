@@ -32,7 +32,7 @@ ViT-RatSLAM 是一个将 ViT-VPR模型（以SALAD为代表）接入 RatSLAM 后�
 - `salad-main/weights/dino_salad.ckpt`
 
 下载链接：
-- `https://drive.google.com/file/d/1u83Dmqmm1-uikOPr58IIhfIzDYwFxCy1/view`
+- [SALAD权重](https://drive.google.com/file/d/1u83Dmqmm1-uikOPr58IIhfIzDYwFxCy1/view)
 
 ### 2) DINOv2 backbone 权重
 
@@ -50,8 +50,8 @@ ViT-RatSLAM 是一个将 ViT-VPR模型（以SALAD为代表）接入 RatSLAM 后�
 
 请将 bag 放在仓库根目录（或挂载到容器 `/data`，最佳参数已配置到数据集对应的yaml文件当中）。
 
-- `irat_aus_28112011.bag`：`https://mega.nz/file/FAlXyZbB#6rMpQ6EE4LQIKmZvy5zN7Stdu4pIzZm2h3TnHkG2wms`
-- `stlucia_2007.bag`：`https://mega.nz/file/od8xVbKJ#E81hKj-M1-CybBkX1dLe3htAJw-gP9MAQIEeZkPwuUY`
+- [irat_aus_28112011.bag](https://mega.nz/file/FAlXyZbB#6rMpQ6EE4LQIKmZvy5zN7Stdu4pIzZm2h3TnHkG2wms)
+- [stlucia_2007.bag](https://mega.nz/file/od8xVbKJ#E81hKj-M1-CybBkX1dLe3htAJw-gP9MAQIEeZkPwuUY)
 
 ## 不纳入仓库的大文件
 
